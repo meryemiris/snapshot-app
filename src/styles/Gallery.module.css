@@ -1,0 +1,16 @@
+/* Gallery.module.css */
+.galleryContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 55px;
+
+}
+
+.galleryImg {
+    max-width: 350px;
+    max-height: auto;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
