@@ -1,20 +1,26 @@
+import React from "react";
 import styles from "../styles/Search.module.css";
 
-export default function Search() {
+interface SearchProps {
+  onSearch: (category: string) => void;
+}
+
+const Search: React.FC<SearchProps> = ({ onSearch }) => {
   function handleSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    const searchTerm = data.get("category");
+    const searchTerm = data.get("category") as string;
 
-    console.log(searchTerm);
+    onSearch(searchTerm);
   }
+
   return (
     <form className={styles.searchContainer} onSubmit={handleSearch}>
       <input
         type="text"
         name="category"
-        placeholder="cute kitten"
+        placeholder="cat"
         className={styles.searchTerm}
       />
       <button className={styles.searchButton} type="submit">
@@ -22,4 +28,6 @@ export default function Search() {
       </button>
     </form>
   );
-}
+};
+
+export default Search;
