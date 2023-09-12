@@ -25,7 +25,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
   return (
     <>
-      <h1>Search Image</h1>
+      <h1 className={styles.header}>Search Image</h1>
       <form className={styles.searchContainer} onSubmit={handleSearch}>
         <input
           type="text"

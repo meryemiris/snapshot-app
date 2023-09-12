@@ -1,5 +1,5 @@
 import Gallery from "../components/Gallery";
-import { Loading } from "../components/Loading";
+// import { Loading } from "../components/Loading";
 import Search from "../components/Search";
 
 import { useState } from "react";

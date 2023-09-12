@@ -1,3 +1,11 @@
+.header {
+    font-size: 4rem;
+    color: #84a59d;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+
 .searchContainer {
     display: flex;
     flex-direction: row;
