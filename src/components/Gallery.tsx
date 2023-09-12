@@ -1,4 +1,4 @@
-import styles from "../styles/Gallery.module.css";
+import styles from "./Gallery.module.css";
 
 interface Image {
   id: string;

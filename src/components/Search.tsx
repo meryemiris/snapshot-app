@@ -1,22 +1,25 @@
 import React from "react";
-import styles from "../styles/Search.module.css";
+import styles from "./Search.module.css";
+import { useState } from "react";
 
 interface SearchProps {
   onSearch: (category: string) => void;
 }
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
   function handleSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
     const searchTerm = data.get("category") as string;
 
-    if (searchTerm.toString().trim().length === 0) return;
+    if (searchTerm.trim().length === 0) return;
 
     event.currentTarget.reset();
     event.currentTarget.focus();
-
+    setQuery(searchTerm);
+    console.log(query);
     onSearch(searchTerm);
   }
 
