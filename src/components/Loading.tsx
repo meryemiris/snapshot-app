@@ -1,7 +1,9 @@
+import styles from "./Loading.module.css";
+
 export const Loading = () => {
   return (
-    <div className="loading">
-      <div className="spinner"></div>
+    <div className={styles.loading}>
+      <div className={styles.spinner}></div>
       <span>Loading...</span>
     </div>
   );
