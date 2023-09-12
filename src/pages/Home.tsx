@@ -62,6 +62,7 @@ export default function HomePage() {
 
   return (
     <>
+      <h1>Search Image</h1>
       <Search onSearch={handleSearch} />
       <Gallery
         images={Array.isArray(filter) && filter.length > 0 ? filter : images}
