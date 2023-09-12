@@ -12,6 +12,11 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     const data = new FormData(event.currentTarget);
     const searchTerm = data.get("category") as string;
 
+    if (searchTerm.toString().trim().length === 0) return;
+
+    event.currentTarget.reset();
+    event.currentTarget.focus();
+
     onSearch(searchTerm);
   }
 
