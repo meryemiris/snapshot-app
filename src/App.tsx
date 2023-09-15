@@ -1,4 +1,5 @@
 import Search from "./components/Search";
+import Categories from "./components/Categories";
 // import { Loading } from "./components/Loading";
 import Gallery from "./components/Gallery";
 
@@ -63,6 +64,7 @@ export default function App() {
   return (
     <>
       <Search onSearch={handleSearch} />
+      <Categories />
       {/* <Loading /> */}
       <Gallery images={filter.length > 0 ? filter : Images} />
     </>
