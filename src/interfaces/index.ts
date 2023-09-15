@@ -1,11 +1,10 @@
 export interface ResponseAPI {
-  results: Result[];
+  images: Images[];
 }
 
-export interface Result {
+export interface Images {
   id: string;
+  alt: string;
+  url: string;
   description: null | string;
-  alt: null | string;
-  urls: URL;
-  likes: number;
 }

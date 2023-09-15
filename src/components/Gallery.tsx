@@ -1,16 +1,7 @@
 import styles from "./Gallery.module.css";
+import { ResponseAPI } from "../interfaces";
 
-interface Image {
-  id: string;
-  url: string;
-  alt: string;
-}
-
-interface GalleryProps {
-  images: Image[];
-}
-
-const Gallery: React.FC<GalleryProps> = ({ images }) => {
+const Gallery: React.FC<ResponseAPI> = ({ images }) => {
   return (
     <div className={styles.galleryContainer}>
       {images.map((image) => (

@@ -1,39 +1,38 @@
-import Gallery from "./components/Gallery";
-// import { Loading } from "../components/Loading";
 import Search from "./components/Search";
+// import { Loading } from "./components/Loading";
+import Gallery from "./components/Gallery";
 
 import { useState } from "react";
 
-// interface Image {
-//   id: string;
-//   url: string;
-//   category: string;
-// }
+import { Images } from "./interfaces";
 
 export default function App() {
-  const [filter, setFilter] = useState({});
+  const [filter, setFilter] = useState<Images[]>([]);
   // const [images, setImages] = useState<Image[]>([]);
-  const DUMMY_DATA = [
+  const Images: Images[] = [
     {
       id: "dog",
       url: "https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9nfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
       alt: "dog",
+      description: "",
     },
     {
       id: "cat",
       url: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2043&q=80",
       alt: "cat",
+      description: "",
     },
 
     {
       id: "bird",
       url: "https://images.unsplash.com/photo-1552728089-57bdde30beb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmlyZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
       alt: "bird",
+      description: "",
     },
   ];
 
   const handleSearch = (searchTerm: string) => {
-    const filtered = DUMMY_DATA.filter((image) =>
+    const filtered = Images.filter((image) =>
       image.id.includes(searchTerm.toLowerCase())
     );
     setFilter(filtered);
@@ -65,11 +64,7 @@ export default function App() {
     <>
       <Search onSearch={handleSearch} />
       {/* <Loading /> */}
-      <Gallery
-        images={
-          Array.isArray(filter) && filter.length > 0 ? filter : DUMMY_DATA
-        }
-      />
+      <Gallery images={filter.length > 0 ? filter : Images} />
     </>
   );
 }
