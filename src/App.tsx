@@ -39,6 +39,11 @@ export default function App() {
     setFilter(filtered);
   };
 
+  const handleCategory = (category: string) => {
+    const filtered = Images.filter((image) => image.id.includes(category));
+    setFilter(filtered);
+  };
+
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -64,7 +69,7 @@ export default function App() {
   return (
     <>
       <Search onSearch={handleSearch} />
-      <Categories />
+      <Categories onCategory={handleCategory} />
       {/* <Loading /> */}
       <Gallery images={filter.length > 0 ? filter : Images} />
     </>
