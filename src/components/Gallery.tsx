@@ -1,14 +1,14 @@
 import styles from "./Gallery.module.css";
 import { ResponseAPI } from "../interfaces";
 
-const Gallery: React.FC<ResponseAPI> = ({ images }) => {
+const Gallery: React.FC<ResponseAPI> = ({ results }) => {
   return (
     <div className={styles.galleryContainer}>
-      {images.map((image) => (
+      {results.map((result) => (
         <img
-          key={image.id}
-          src={image.url}
-          alt={image.alt}
+          key={result.id}
+          src={result.urls}
+          alt={result.alt || ""}
           className={styles.galleryImg}
         />
       ))}

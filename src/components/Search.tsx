@@ -7,7 +7,6 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
-  // const [query, setQuery] = useState("");
   function handleSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -16,10 +15,6 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
     if (searchTerm.trim().length === 0) return;
 
-    event.currentTarget.reset();
-    event.currentTarget.focus();
-    // setQuery(searchTerm);
-    // console.log(query);
     onSearch(searchTerm);
   }
 

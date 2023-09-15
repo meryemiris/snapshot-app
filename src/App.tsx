@@ -3,75 +3,62 @@ import Categories from "./components/Categories";
 // import { Loading } from "./components/Loading";
 import Gallery from "./components/Gallery";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { Images } from "./interfaces";
+import { Result } from "./interfaces";
+import axios from "axios";
 
 export default function App() {
-  const [filter, setFilter] = useState<Images[]>([]);
-  // const [images, setImages] = useState<Image[]>([]);
-  const Images: Images[] = [
-    {
-      id: "dog",
-      url: "https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9nfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
-      alt: "dog",
-      description: "",
-    },
-    {
-      id: "cat",
-      url: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2043&q=80",
-      alt: "cat",
-      description: "",
-    },
+  const [images, setImages] = useState<Result[]>([]);
+  const [query, setQuery] = useState("");
 
-    {
-      id: "bird",
-      url: "https://images.unsplash.com/photo-1552728089-57bdde30beb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmlyZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
-      alt: "bird",
-      description: "",
-    },
-  ];
+  const apiKey = import.meta.env.VITE_UNSPLASH_API_KEY;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.unsplash.com/search/photos`,
+          {
+            params: {
+              query: query,
+            },
+            headers: {
+              Authorization: `Client-ID ${apiKey}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const data = response.data;
+          const results = data.results;
+          console.log("image", results);
+
+          setImages(results);
+        }
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchData();
+  }, [query, apiKey]);
 
   const handleSearch = (searchTerm: string) => {
-    const filtered = Images.filter((image) =>
-      image.id.includes(searchTerm.toLowerCase())
-    );
-    setFilter(filtered);
+    setQuery(searchTerm);
+    console.log("searchTerm", searchTerm);
   };
 
   const handleCategory = (category: string) => {
-    const filtered = Images.filter((image) => image.id.includes(category));
-    setFilter(filtered);
+    setQuery(category);
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const apiKey = process.env.REACT_APP_UNSPLASH_API_KEY;
-
-  //       const response = await fetch(
-  //         `https://api.unsplash.com/photos?client_id=${apiKey}`
-  //       );
-
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch images");
-  //       }
-
-  //       const data: Image[] = await response.json();
-  //       setImages(data);
-  //     } catch (error) {
-  //       console.log("Error fetching images:", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
 
   return (
     <>
       <Search onSearch={handleSearch} />
       <Categories onCategory={handleCategory} />
       {/* <Loading /> */}
-      <Gallery images={filter.length > 0 ? filter : Images} />
+      <Gallery results={images} />
     </>
   );
 }
