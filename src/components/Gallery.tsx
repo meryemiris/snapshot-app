@@ -8,9 +8,8 @@ const Gallery: React.FC<ResponseAPI> = ({ results }) => {
         <img
           key={result.id}
           id={result.id}
-          src={result.urls.full}
+          src={result.urls.small}
           alt={result.alt_description || ""}
-          description={result.description || ""}
           className={styles.galleryImg}
         />
       ))}
