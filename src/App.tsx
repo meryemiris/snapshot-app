@@ -1,6 +1,6 @@
 import Search from "./components/Search";
 import Categories from "./components/Categories";
-// import { Loading } from "./components/Loading";
+import { Loading } from "./components/Loading";
 import Gallery from "./components/Gallery";
 
 import { useState, useEffect } from "react";
@@ -11,6 +11,7 @@ import axios from "axios";
 export default function App() {
   const [images, setImages] = useState<Result[]>([]);
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const apiKey = import.meta.env.VITE_UNSPLASH_API_KEY;
 
@@ -33,15 +34,15 @@ export default function App() {
           const data = response.data;
           const results = data.results;
           console.log("image", results);
-
+          setLoading(true);
           setImages(results);
         }
       } catch (error) {
         console.error("Error fetching images:", error);
       }
     };
-
     fetchData();
+    setLoading(false);
   }, [query, apiKey]);
 
   const handleSearch = (searchTerm: string) => {
@@ -57,7 +58,7 @@ export default function App() {
     <>
       <Search onSearch={handleSearch} />
       <Categories onCategory={handleCategory} />
-      {/* <Loading /> */}
+      {loading && <Loading />}
       <Gallery results={images} />
     </>
   );
