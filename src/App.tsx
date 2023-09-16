@@ -1,6 +1,6 @@
 import Search from "./components/Search";
 import Categories from "./components/Categories";
-import { Loading } from "./components/Loading";
+import Loading from "./components/Loading";
 import Gallery from "./components/Gallery";
 
 import { useState, useEffect } from "react";

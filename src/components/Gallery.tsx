@@ -10,7 +10,7 @@ const Gallery: React.FC<ResponseAPI> = ({ results }) => {
           id={result.id}
           src={result.urls.full}
           alt={result.alt_description || ""}
-          // description= {result.description || ""}
+          description={result.description || ""}
           className={styles.galleryImg}
         />
       ))}
