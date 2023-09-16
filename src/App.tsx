@@ -17,6 +17,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           `https://api.unsplash.com/search/photos`,
@@ -29,17 +30,17 @@ export default function App() {
             },
           }
         );
-        setLoading(true);
 
         if (response.status === 200) {
           const data = response.data;
           const results = data.results;
           console.log("image", results);
           setImages(results);
-          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching images:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
