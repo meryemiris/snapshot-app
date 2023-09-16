@@ -4,6 +4,6 @@ export interface ResponseAPI {
 
 export interface Result {
   id: string;
-  urls: { small: string; full: string };
+  urls: { regular: string; full: string };
   alt_description: null | string;
 }

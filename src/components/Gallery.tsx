@@ -13,10 +13,10 @@ const Gallery: React.FC<GalleryProps> = ({ results, onImageClick }) => {
         <img
           key={result.id}
           id={result.id}
-          src={result.urls.small}
+          src={result.urls.regular}
           alt={result.alt_description || ""}
           className={styles.galleryImg}
-          onClick={() => onImageClick(result.urls.full)}
+          onClick={() => onImageClick(result.urls.regular)}
         />
       ))}
     </div>
