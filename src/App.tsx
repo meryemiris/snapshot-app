@@ -7,11 +7,13 @@ import { useState, useEffect } from "react";
 
 import { Result } from "./interfaces";
 import axios from "axios";
+import ImageModal from "./components/ImageModal";
 
 export default function App() {
   const [images, setImages] = useState<Result[]>([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const apiKey = import.meta.env.VITE_UNSPLASH_API_KEY;
 
@@ -55,12 +57,23 @@ export default function App() {
     setQuery(category);
   };
 
+  const handleImageClick = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <>
       <Search onSearch={handleSearch} />
       <Categories onCategory={handleCategory} />
       {loading && <Loading />}
-      <Gallery results={images} />
+      <Gallery results={images} onImageClick={handleImageClick} />
+      {selectedImage && (
+        <ImageModal imageUrl={selectedImage} onClose={closeModal} />
+      )}
     </>
   );
 }

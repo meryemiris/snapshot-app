@@ -1,4 +1,3 @@
-/* Gallery.module.css */
 .galleryContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -13,4 +12,8 @@
     max-height: auto;
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
+}
+
+.galleryImg:hover {
+    transform: scale(1.1);
 }

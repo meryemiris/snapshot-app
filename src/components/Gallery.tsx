@@ -1,7 +1,12 @@
 import styles from "./Gallery.module.css";
-import { ResponseAPI } from "../interfaces";
+import { Result } from "../interfaces";
 
-const Gallery: React.FC<ResponseAPI> = ({ results }) => {
+interface GalleryProps {
+  results: Result[];
+  onImageClick: (imageUrl: string) => void;
+}
+
+const Gallery: React.FC<GalleryProps> = ({ results, onImageClick }) => {
   return (
     <div className={styles.galleryContainer}>
       {results.map((result) => (
@@ -11,6 +16,7 @@ const Gallery: React.FC<ResponseAPI> = ({ results }) => {
           src={result.urls.small}
           alt={result.alt_description || ""}
           className={styles.galleryImg}
+          onClick={() => onImageClick(result.urls.full)}
         />
       ))}
     </div>
