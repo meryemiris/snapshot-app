@@ -29,20 +29,20 @@ export default function App() {
             },
           }
         );
+        setLoading(true);
 
         if (response.status === 200) {
           const data = response.data;
           const results = data.results;
           console.log("image", results);
-          setLoading(true);
           setImages(results);
+          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching images:", error);
       }
     };
     fetchData();
-    setLoading(false);
   }, [query, apiKey]);
 
   const handleSearch = (searchTerm: string) => {

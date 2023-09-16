@@ -7,8 +7,10 @@ const Gallery: React.FC<ResponseAPI> = ({ results }) => {
       {results.map((result) => (
         <img
           key={result.id}
-          src={result.urls}
-          alt={result.alt || ""}
+          id={result.id}
+          src={result.urls.full}
+          alt={result.alt_description || ""}
+          // description= {result.description || ""}
           className={styles.galleryImg}
         />
       ))}
