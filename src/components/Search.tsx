@@ -59,6 +59,13 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           >
             Dogs
           </button>
+          <button
+            className={styles.categoryButton}
+            onClick={() => handleCategory("red fox")}
+            type="button"
+          >
+            Fox
+          </button>
         </div>
       </form>
     </>
