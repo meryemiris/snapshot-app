@@ -1,9 +1,9 @@
 .galleryContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1200px;
-    margin: 55px;
+    gap: 4%;
+    max-width: 1440px;
+    margin: 4%;
 
 }
 
@@ -16,4 +16,31 @@
 
 .galleryImg:hover {
     transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+    .galleryContainer {
+
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2%;
+        margin: 4%;
+        max-width: 100%;
+    }
+
+    .galleryImg {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .galleryContainer {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2%;
+        margin: 4%;
+        max-width: 100%;
+    }
+
+    .galleryImg {
+        max-width: 100%;
+    }
 }

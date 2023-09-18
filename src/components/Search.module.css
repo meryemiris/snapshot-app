@@ -9,7 +9,7 @@
 .searchContainer {
     display: flex;
     flex-direction: row;
-    margin-top: 2rem;
+    margin-top: 1rem;
     align-items: center;
     justify-content: center;
 }
@@ -37,5 +37,18 @@
     color: #f8edeb;
     border: 1px solid #f8edeb;
 
+}
 
+.header {
+    font-size: 3rem;
+
+}
+
+.searchTerm {
+    font-size: 1rem;
+
+}
+
+.searchButton {
+    font-size: 1rem;
 }
