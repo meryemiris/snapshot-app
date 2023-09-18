@@ -1,5 +1,4 @@
 import Search from "./components/Search";
-import Categories from "./components/Categories";
 import Loading from "./components/Loading";
 import Gallery from "./components/Gallery";
 
@@ -50,12 +49,11 @@ export default function App() {
 
   const handleSearch = (searchTerm: string) => {
     setQuery(searchTerm);
-    console.log("searchTerm", searchTerm);
   };
 
-  const handleCategory = (category: string) => {
-    setQuery(category);
-  };
+  // const handleCategory = (category: string) => {
+  //   setQuery(category);
+  // };
 
   const handleImageClick = (imageUrl: string) => {
     setSelectedImage(imageUrl);
@@ -68,7 +66,7 @@ export default function App() {
   return (
     <>
       <Search onSearch={handleSearch} />
-      <Categories onCategory={handleCategory} />
+
       {loading && <Loading />}
       <Gallery results={images} onImageClick={handleImageClick} />
       {selectedImage && (
