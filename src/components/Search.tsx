@@ -17,29 +17,31 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     onSearch(searchTerm);
   }
 
-  const handleCategory = (category: string) => {
+  function handleCategory(category: string) {
     onSearch(category);
-  };
+  }
 
   return (
     <>
       <h1 className={styles.header}>Search Image</h1>
-      <form className={styles.searchContainer} onSubmit={handleSearch}>
-        <input
-          type="text"
-          name="category"
-          placeholder="cat"
-          className={styles.searchTerm}
-        />
-        <button className={styles.searchButton} type="submit">
-          Search
-        </button>
+      <form onSubmit={handleSearch}>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            name="category"
+            placeholder="cat"
+            className={styles.searchTerm}
+          />
+          <button className={styles.searchButton} type="submit">
+            Search
+          </button>
+        </div>
+
         <div className={styles.categories}>
           <button
             className={styles.categoryButton}
             onClick={() => handleCategory("bird")}
             type="button"
-            name="birds"
           >
             Birds
           </button>
@@ -47,7 +49,6 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
             className={styles.categoryButton}
             onClick={() => handleCategory("cat")}
             type="button"
-            name="cats"
           >
             Cats
           </button>
@@ -55,7 +56,6 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
             className={styles.categoryButton}
             onClick={() => handleCategory("dog")}
             type="button"
-            name="dogs"
           >
             Dogs
           </button>
