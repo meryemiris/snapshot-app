@@ -53,11 +53,13 @@ export default function App() {
 
   useEffect(() => {
     fetchData(page);
+    setLoading(false);
   }, [fetchData, page]);
 
   const handleSearch = (searchTerm: string) => {
     setQuery(searchTerm);
     setPage(1);
+    setImages([]);
   };
 
   const handleImageClick = (imageUrl: string) => {
