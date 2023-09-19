@@ -8,18 +8,20 @@ interface GalleryProps {
 
 const Gallery: React.FC<GalleryProps> = ({ results, onImageClick }) => {
   return (
-    <div className={styles.galleryContainer}>
-      {results.map((result) => (
-        <img
-          key={result.id}
-          id={result.id}
-          src={result.urls.regular}
-          alt={result.alt_description || ""}
-          className={styles.galleryImg}
-          onClick={() => onImageClick(result.urls.regular)}
-        />
-      ))}
-    </div>
+    <>
+      <div className={styles.galleryContainer}>
+        {results.map((result) => (
+          <img
+            key={result.id}
+            id={result.id}
+            src={result.urls.regular}
+            alt={result.alt_description || ""}
+            className={styles.galleryImg}
+            onClick={() => onImageClick(result.urls.regular)}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
